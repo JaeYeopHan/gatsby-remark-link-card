@@ -1,0 +1,25 @@
+{
+  "name": "gatsby-remark-link-card",
+  "version": "0.1.0",
+  "description": "Gatsby Remark plugin to embed card about link",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "link",
+    "remark",
+    "card"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.20.0",
+    "unist-util-visit": "^2.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.24"
+  }
+}
