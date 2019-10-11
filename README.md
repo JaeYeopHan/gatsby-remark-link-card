@@ -6,8 +6,11 @@ Gatsby Remark plugin to embed card about link.
 
 > 👀 You can preview the description of the link!
 
+[![Build Status](https://travis-ci.org/JaeYeopHan/gatsby-remark-link-card.svg?branch=master)](https://travis-ci.org/JaeYeopHan/gatsby-remark-link-card)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![npm version](https://badge.fury.io/js/gatsby-remark-link-card.svg)](https://badge.fury.io/js/gatsby-remark-link-card)
+
 <p>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/JbeeLjyhanll">
     <img alt="Twitter: JbeeLjyhanll" src="https://img.shields.io/twitter/follow/JbeeLjyhanll.svg?style=social" target="_blank" />
   </a>
@@ -28,6 +31,14 @@ $ yarn add gatsby-remark-link-card
 ## 🚀 How to use
 
 👉 This plugin requires `gatsby-transformer-remark`.
+
+### in Markdown
+
+```md
+[$card](https://github.com/JaeYeopHan/gatsby-remark-link-card)
+```
+
+### with Config
 
 ```js
 // In your gatsby-config.js
@@ -52,7 +63,10 @@ plugins: [
 
 | Property       | Type                                  | Default  | Description                                                |
 | -------------- | ------------------------------------- | -------- | ---------------------------------------------------------- |
-| `margin`       | `number`                              | `0`      | |
+| `delimiter`       | `string`                              | `$card`      | Title of the link to create a card |
+| `image`       | `string`                              | data-uri      | Default og image path |
+| `favicon`       | `string`                              | data-uri      | Default favicon image path |
+| `error`       | `Object`                              | -      | Default config when error |
 
 ## Author
 
