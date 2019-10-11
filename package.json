@@ -1,10 +1,11 @@
 {
   "name": "gatsby-remark-link-card",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "Gatsby Remark plugin to embed card about link",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "gatsby",
@@ -21,5 +22,9 @@
   },
   "devDependencies": {
     "semantic-release": "^15.13.24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JaeYeopHan/gatsby-remark-link-card.git"
   }
 }
