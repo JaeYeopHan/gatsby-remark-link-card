@@ -8,10 +8,10 @@ const defaultOption = {
   delimiter: '$card',
   image: DEFAULT_IMAGE_SRC,
   favicon: DEFAULT_FAVICON_SRC,
-  url: DEFAULT_URL,
   error: {
     title: 'Not Found Site',
-    description: 'Cannot find site or meta tag and title.'
+    description: 'Cannot find site or meta tag and title.',
+    url: DEFAULT_URL,
   }
 }
 const ID = `gatsby-remark-link-card`

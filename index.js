@@ -7,7 +7,7 @@ const ErrorFormat = {
   title: defaultOption.error.title,
   description: defaultOption.error.description,
   favicon: defaultOption.favicon,
-  url: defaultOption.url,
+  url: defaultOption.error.url,
   ogImage: defaultOption.image,
 }
 
