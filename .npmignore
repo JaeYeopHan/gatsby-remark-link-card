@@ -1,0 +1,8 @@
+# directory
+examples
+.vscode
+assets
+
+#files
+.prettierrc
+.travis.yml
