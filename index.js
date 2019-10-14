@@ -68,7 +68,6 @@ const getPageData = async (browser, url) => {
       favicon,
     }
   } catch (e) {
-    console.error(e)
     return ErrorFormat
   }
 }
@@ -135,7 +134,6 @@ module.exports = async ({ cache, markdownAST }, pluginOption) => {
   try {
     await Promise.all(targets.map(t => t()))
   } catch (e) {
-    console.error(e)
   } finally {
     await browser.close()
 
