@@ -4,6 +4,7 @@
   "description": "Gatsby Remark plugin to embed card about link",
   "main": "index.js",
   "scripts": {
+    "run:demo": "cd ./examples/using-remark-link-card && rm -rf .cache && npm start",
     "semantic-release": "semantic-release"
   },
   "keywords": [
