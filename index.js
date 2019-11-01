@@ -134,6 +134,7 @@ module.exports = async ({ cache, markdownAST }, pluginOption) => {
   try {
     await Promise.all(targets.map(t => t()))
   } catch (e) {
+    console.log(e)
   } finally {
     await browser.close()
 
