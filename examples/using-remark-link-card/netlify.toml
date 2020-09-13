@@ -1,0 +1,4 @@
+[build]
+  base = "examples/using-remark-link-card"
+  publish = "public/"
+  command = "sh ./setup_pptr.sh && gatsby build"
