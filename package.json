@@ -21,7 +21,7 @@
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
-    "semantic-release": "^15.13.24"
+    "semantic-release": "^17.2.3"
   },
   "repository": {
     "type": "git",
