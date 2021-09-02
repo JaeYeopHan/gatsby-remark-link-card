@@ -66,6 +66,7 @@ plugins: [
 | `delimiter`       | `string`                              | `$card`      | Title of the link to create a card |
 | `image`       | `string`                              | data-uri      | Default og image path |
 | `favicon`       | `string`                              | data-uri      | Default favicon image path |
+| `timeout`       | `number`                              | 30000      | Default timeout(ms) for puppeteer |
 | `error`       | `Object`                              | -      | Default config when error |
 
 ## Author
