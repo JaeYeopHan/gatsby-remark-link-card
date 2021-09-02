@@ -37,10 +37,10 @@ const getHTML = pageData => {
   `.trim()
 }
 
-const getPageData = async (browser, url) => {
+const getPageData = async (browser, url, timeout) => {
   try {
     const page = await browser.newPage()
-
+    await page.setDefaultNavigationTimeout(timeout);
     await page.goto(url)
 
     const [
@@ -94,7 +94,7 @@ const isValidCondition = (node, delimiter) => {
 
 module.exports = async ({ cache, markdownAST }, pluginOption) => {
   const options = { ...defaultOption, ...pluginOption }
-  const { delimiter } = options
+  const { delimiter, timeout } = options
   const browser = await puppeteer.launch()
   const targets = []
 
@@ -120,7 +120,7 @@ module.exports = async ({ cache, markdownAST }, pluginOption) => {
       let html = await cache.get(urlString)
 
       if (!html) {
-        const data = await getPageData(browser, url)
+        const data = await getPageData(browser, url, timeout)
         html = getHTML(data)
         await cache.set(urlString, html)
       }
