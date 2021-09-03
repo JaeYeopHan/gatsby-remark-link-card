@@ -11,11 +11,10 @@ const ErrorFormat = {
   ogImage: defaultOption.image,
 }
 
-const getHTML = pageData => {
+const getHTML = (pageData) => {
   const { title, description, favicon, url, ogImage } = pageData
   const ogImageSrc = !ogImage || ogImage === 'undefined' ? defaultOption.image : ogImage
-  const ogImageAlt =
-    ogImage === 'undefined' ? 'default-image' : `${title}-image`
+  const ogImageAlt = ogImage === 'undefined' ? 'default-image' : `${title}-image`
   const faviconSrc = !favicon || favicon === 'undefined' ? defaultOption.favicon : favicon
 
   return `
@@ -37,29 +36,32 @@ const getHTML = pageData => {
   `.trim()
 }
 
+const fetchData = (promise) =>
+  promise
+    .then((value) => ({ done: true, value }))
+    .catch((error) => Promise.resolve({ done: false, error }))
+
+const getDataValue = (data, label) => {
+  return data.done ? data.value : ErrorFormat[label] || ''
+}
+
 const getPageData = async (browser, url) => {
   try {
     const page = await browser.newPage()
 
     await page.goto(url)
 
-    const [
-      title,
-      description,
-      ogImage,
-      favicon,
-    ] = await Promise.all([
-      page.title(),
-      page.$eval(
-        "meta[property='og:description']",
-        el => el.content
-      ),
-      page.$eval(
-        "meta[property='og:image']",
-        el => el.content
-      ),
-      page.$eval("link[rel='shortcut icon']", el => el.href)
+    const [title, description, ogImage, favicon] = await Promise.all([
+      fetchData(page.title()),
+      fetchData(page.$eval("meta[property='og:description']", (el) => el.content)),
+      fetchData(page.$eval("meta[property='og:image']", (el) => el.content)),
+      fetchData(page.$eval("link[rel='shorturl icon']", (el) => el.href)),
     ])
+    const title = getDataValue(titleData, 'title')
+    const description = getDataValue(descriptionData, 'description')
+    const ogImage = getDataValue(ogImageData, 'ogImage')
+    const favicon = getDataValue(faviconData, 'favicon')
+
     return {
       title,
       description,
@@ -72,7 +74,7 @@ const getPageData = async (browser, url) => {
   }
 }
 
-const getUrlString = url => {
+const getUrlString = (url) => {
   const urlString = url.startsWith('http') ? url : `https://${url}`
 
   try {
@@ -85,9 +87,7 @@ const getUrlString = url => {
 const isValidCondition = (node, delimiter) => {
   if (node.type === 'link' && node.title === null && node.url) {
     return (
-      node.children[0] &&
-      node.children[0].type === 'text' &&
-      node.children[0].value === delimiter
+      node.children[0] && node.children[0].type === 'text' && node.children[0].value === delimiter
     )
   }
 }
@@ -98,7 +98,7 @@ module.exports = async ({ cache, markdownAST }, pluginOption) => {
   const browser = await puppeteer.launch()
   const targets = []
 
-  visit(markdownAST, 'paragraph', paragraphNode => {
+  visit(markdownAST, 'paragraph', (paragraphNode) => {
     if (paragraphNode.children.length !== 1) {
       return
     }
@@ -132,7 +132,7 @@ module.exports = async ({ cache, markdownAST }, pluginOption) => {
   })
 
   try {
-    await Promise.all(targets.map(t => t()))
+    await Promise.all(targets.map((t) => t()))
   } catch (e) {
   } finally {
     await browser.close()
